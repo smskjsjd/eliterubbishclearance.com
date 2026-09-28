@@ -146,14 +146,31 @@ footer{font-size:.88rem;color:var(--muted);padding-block:28px;border-top:1px sol
 @media (max-width:560px){.compare,.ba{grid-template-columns:1fr}.checks{columns:1}}
 
 /* brand header */
-.brandbar{background:#fff;display:flex;justify-content:center;padding:20px 16px 10px}
-.brandbar img{width:min(430px,80vw);height:auto;display:block}
+/* Logo band: always the white-background artwork on a white band, in every
+   colour scheme. Previously dark mode swapped in the dark-background logo but
+   left the band white, so the logo rendered as a black tile floating on white. */
+.brandbar{background:#fff;display:flex;justify-content:center;align-items:center;padding:18px 16px 14px}
+.brandbar img{width:auto;height:auto;max-width:min(430px,86vw);max-height:150px;object-fit:contain;display:block}
+.brandbar img.on-light{display:block!important}
+.brandbar img.on-dark{display:none!important}
 .brandfoot{display:flex;justify-content:center;padding-block:4px 10px}
-.brandfoot img{width:min(290px,60vw);height:auto;display:block}
-.brandbar img.on-dark{display:none}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .brandbar img.on-light{display:none}:root:not([data-theme="light"]) .brandbar img.on-dark{display:block}}
-:root[data-theme="dark"] .brandbar img.on-light{display:none}
-:root[data-theme="dark"] .brandbar img.on-dark{display:block}
+.brandfoot img{width:min(290px,66vw);height:auto;display:block}
+@media (max-width:480px){.brandbar{padding:14px 14px 12px}.brandbar img{max-width:90vw;max-height:124px}}
+@media (max-width:360px){.brandbar img{max-height:108px}}
+
+/* Phone layout */
+html,body{max-width:100%;overflow-x:hidden}
+@media (max-width:560px){
+  .hero-in{gap:18px}
+  h1{font-size:clamp(2.05rem,8.6vw,2.8rem)}
+  .slogan{letter-spacing:.03em}
+  .hero .lede,.contact .lede{font-size:1.05rem}
+  .cta{flex-direction:column;align-items:stretch;gap:10px}
+  .cta .btn{width:100%;justify-content:center;min-height:54px;padding:0 18px;font-size:1.05rem}
+  .cta .copy{width:100%;min-height:50px}
+  .mail{font-size:1.1rem}
+  .num{word-break:keep-all}
+}
 </style>
 </head>
 <body>
