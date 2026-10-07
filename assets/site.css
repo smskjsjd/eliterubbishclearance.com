@@ -243,3 +243,16 @@ body{padding-bottom:96px}
   summary{padding-block:4px;min-height:44px;align-items:center}
   .areas li{padding:9px 16px}
 }
+
+/* Social links — sits in the dark contact block, so it inherits
+   white text and uses the brand yellow on hover. */
+.social{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.social a{display:inline-flex;align-items:center;gap:9px;
+          padding:10px 16px;border-radius:999px;text-decoration:none;
+          border:1px solid rgba(255,255,255,.35);color:#fff;
+          font:700 .95rem/1 "Source Sans 3",sans-serif;min-height:44px;
+          -webkit-tap-highlight-color:transparent}
+.social a svg{width:20px;height:20px;flex:none}
+@media (hover:hover){
+  .social a:hover{border-color:var(--yellow);color:var(--yellow);background:rgba(255,255,255,.06)}
+}
