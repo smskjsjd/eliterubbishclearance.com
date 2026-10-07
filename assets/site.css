@@ -199,23 +199,43 @@ html,body{max-width:100%;overflow-x:hidden}
 }
 body.lb-open{overflow:hidden}
 
-/* Sticky call bar on phones — the phone number was only reachable
-   by scrolling to the top or the very bottom of a long page. */
-.callbar{display:none}
+/* Always-visible contact bar.
+   The number is the whole point of this site, so it stays on screen
+   at every size. On phones it's a full-width bar pinned to the
+   bottom; on larger screens it becomes a floating pill in the
+   bottom-right corner so it never covers the content. */
+.callbar{position:fixed;z-index:300;display:flex;gap:8px;
+         right:18px;bottom:18px;
+         padding:8px;border-radius:999px;
+         background:color-mix(in srgb,var(--card) 94%,transparent);
+         border:1px solid var(--line);
+         box-shadow:0 8px 28px rgba(8,18,28,.22),0 2px 6px rgba(8,18,28,.12);
+         backdrop-filter:saturate(1.3) blur(10px)}
+.callbar a{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+           min-height:48px;padding:0 20px;border-radius:999px;text-decoration:none;
+           font:700 1.05rem/1 "Source Sans 3",sans-serif;white-space:nowrap;
+           -webkit-tap-highlight-color:transparent}
+.callbar .c-call{background:var(--green);color:#fff;font-variant-numeric:tabular-nums}
+.callbar .c-wa{background:#25D366;color:#07261a}
+.callbar .c-ico{width:20px;height:20px;flex:none}
+@media (hover:hover){.callbar a:hover{filter:brightness(1.07)}}
+body{padding-bottom:96px}
+
+/* Phones: full-width bar, number still shown in full */
 @media (max-width:760px){
-  .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;
-           left:0;right:0;bottom:0;z-index:300;padding:9px 10px
+  .callbar{left:0;right:0;bottom:0;display:grid;grid-template-columns:1.35fr 1fr;
+           gap:8px;border-radius:0;padding:9px 10px
            calc(9px + env(safe-area-inset-bottom,0px));
-           background:color-mix(in srgb,var(--bg) 92%,transparent);
-           backdrop-filter:saturate(1.3) blur(10px);
-           border-top:1px solid var(--line)}
-  .callbar a{display:flex;align-items:center;justify-content:center;gap:8px;
-             min-height:50px;border-radius:8px;text-decoration:none;
-             font:700 1rem "Source Sans 3",sans-serif}
-  .callbar .c-call{background:var(--green);color:#fff}
-  .callbar .c-wa{background:#25D366;color:#07261a}
-  body{padding-bottom:78px}
-  .lb-count{bottom:84px}
+           border:0;border-top:1px solid var(--line);
+           background:color-mix(in srgb,var(--bg) 93%,transparent);
+           box-shadow:0 -4px 18px rgba(8,18,28,.14)}
+  .callbar a{min-height:52px;padding:0 10px;border-radius:9px;font-size:1.02rem}
+  body{padding-bottom:82px}
+  .lb-count{bottom:88px}
+}
+@media (max-width:360px){
+  .callbar a{font-size:.95rem;gap:6px}
+  .callbar .c-ico{width:17px;height:17px}
 }
 
 /* Bigger tap targets on phones */
